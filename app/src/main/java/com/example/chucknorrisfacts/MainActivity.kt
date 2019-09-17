@@ -11,6 +11,8 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
+    //teste 17/09/2019
+
     val URL = "http://api.icndb.com/jokes/random"
     var okHttpClient: OkHttpClient = OkHttpClient()
 
