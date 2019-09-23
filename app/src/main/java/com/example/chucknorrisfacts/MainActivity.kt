@@ -11,9 +11,11 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    //teste 17/09/2019
+    //**Fazendo chamadas Json web service, usando a biblioteca Okhttp3
+    // Os fatos serão obtidos no banco de dados do Internet Chuck Norris,
+    // que oferece uma API simples para obter fatos aleatórios do Chuck Norris:
 
-    val URL = "http://api.icndb.com/jokes/random"
+    val URL = "https://api.icndb.com/jokes/random"
     var okHttpClient: OkHttpClient = OkHttpClient()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         val request: Request = Request.Builder().url(URL).build()
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
-                println("Falha ao solicitar requisição")
+                android.util.Log.d( "APP","Falha ao solicitar requisição")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                val json = response?.body()?.string()
+                val json = response.body()?.string()
 
                 val txt = (JSONObject (json).getJSONObject("value").get("joke")).toString()
 
